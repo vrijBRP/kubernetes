@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vrijbrp.fullname" . }}-balie-ws
+  labels:
+    {{- include "vrijbrp.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "vrijbrp.ws.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "vrijbrp.ws.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: database
+          secret:
+            secretName: {{ template "fullname" . }}-balie-ws
+
+        - name: log4j
+          configMap:
+            name: {{ template "fullname" . }}
+        - name: logs
+          emptyDir: {}
+
+      containers:
+        - name: {{ include "vrijbrp.fullname" . }}-balie-ws
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}/balie-ws:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+#          livenessProbe:
+#            initialDelaySeconds: 600
+#            httpGet:
+#              path: /personen-ws
+#              port: http
+#          readinessProbe:
+#            initialDelaySeconds: 600
+#            httpGet:
+#              path: /
+#              port: http
+          volumeMounts:
+            - name: database
+              readOnly: true
+              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/config
+            - name: log4j
+              readOnly: true
+              mountPath: /usr/local/tomcat/lib/log4j.properties
+              subPath: log4j.properties
+            - name: logs
+              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/logs
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

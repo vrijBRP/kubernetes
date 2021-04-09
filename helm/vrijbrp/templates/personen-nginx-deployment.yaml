@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vrijbrp.fullname" . }}-balie-nginx
+  labels:
+    {{- include "vrijbrp.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "vrijbrp.nginx.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "vrijbrp.nginx.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: {{ template "fullname" . }}-personen-nginx
+      containers:
+        - name: {{ include "vrijbrp.fullname" . }}-balie-nginx
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "docker.io/nginx:latest"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+#          livenessProbe:
+#            httpGet:
+#              path: /personen
+#              port: http
+#          readinessProbe:
+#            httpGet:
+#              path: /personen
+#              port: http
+          env:
+            - name: NGINX_HOST
+              value: {{ include "vrijbrp.fullname" . }}-balie-backend
+            - name: NGINX_PORT
+              value: "80"
+          volumeMounts:
+            - name: nginx-config
+              subPath: default.conf.template
+              readOnly: true
+              mountPath: /etc/nginx/templates/default.conf.template
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
