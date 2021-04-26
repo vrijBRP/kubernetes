@@ -37,14 +37,16 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /personen
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /personen
-#              port: http
+          readinessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /rest/v2/info
+             port: http
+          livenessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /rest/v2/info
+             port: http
           env:
             - name: NGINX_HOST
               value: {{ include "vrijbrp.fullname" . }}-balie-backend

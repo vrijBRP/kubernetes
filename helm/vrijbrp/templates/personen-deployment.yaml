@@ -42,16 +42,16 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          # readinessProbe:
-          #  initialDelaySeconds: 5
-          #  httpGet:
-          #    path: /personen
-          #    port: http
-          # livenessProbe:
-          #  initialDelaySeconds: 15
-          #  httpGet:
-          #    path: /personen
-          #    port: http
+          readinessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /personen/rest/v2/info
+             port: http
+          livenessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /personen/rest/v2/info
+             port: http
           volumeMounts:
             - name: database
               readOnly: true

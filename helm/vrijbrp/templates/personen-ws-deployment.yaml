@@ -41,6 +41,16 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          readinessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /personen-ws/rest/v2/info
+             port: http
+          livenessProbe:
+           initialDelaySeconds: 30
+           httpGet:
+             path: /personen-ws/rest/v2/info
+             port: http
           volumeMounts:
             - name: database
               readOnly: true

@@ -2,7 +2,7 @@
 
 image:
   repository: docker-repo.procura.nl/vrijbrp
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
@@ -25,7 +25,6 @@ settings:
   gemeentecode: '1902'
   gemeentenaam: 'Demodam'
   loglevel: 'INFO'
-
 
 serviceAccount:
   # Specifies whether a service account should be created
