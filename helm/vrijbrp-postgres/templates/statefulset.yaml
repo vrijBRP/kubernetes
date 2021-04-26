@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "vrijbrp-postgres.fullname" . }}
+  labels:
+    {{- include "vrijbrp-postgres.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ template "vrijbrp-postgres.fullname" . }}-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "vrijbrp-postgres.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "vrijbrp-postgres.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+      containers:
+        - name: {{ include "vrijbrp-postgres.fullname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: {{ include "vrijbrp-postgres.fullname" . }}-data
+          env:
+            - name: "POSTGRES_USER"
+              value: {{ .Values.postgres.user | quote }}
+            - name: "POSTGRES_PASSWORD"
+              value: {{ .Values.postgres.user | quote }}
+          ports:
+            - name: http
+              containerPort: 5432
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: {{ include "vrijbrp-postgres.fullname" . }}-data
+          persistentVolumeClaim:
+            claimName: {{ include "vrijbrp-postgres.fullname" . }}-pvc

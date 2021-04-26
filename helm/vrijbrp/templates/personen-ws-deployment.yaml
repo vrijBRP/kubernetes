@@ -5,9 +5,6 @@ metadata:
   labels:
     {{- include "vrijbrp.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
       {{- include "vrijbrp.ws.selectorLabels" . | nindent 6 }}
@@ -30,13 +27,11 @@ spec:
         - name: database
           secret:
             secretName: {{ template "fullname" . }}-balie-ws
-
         - name: log4j
           configMap:
             name: {{ template "fullname" . }}
         - name: logs
           emptyDir: {}
-
       containers:
         - name: {{ include "vrijbrp.fullname" . }}-balie-ws
           securityContext:
@@ -46,17 +41,6 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-              protocol: TCP
-#          livenessProbe:
-#            initialDelaySeconds: 600
-#            httpGet:
-#              path: /personen-ws
-#              port: http
-#          readinessProbe:
-#            initialDelaySeconds: 600
-#            httpGet:
-#              path: /
-#              port: http
           volumeMounts:
             - name: database
               readOnly: true

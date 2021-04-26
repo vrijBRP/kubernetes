@@ -1,35 +1,37 @@
-# Default values for vrijbrp.
-
-image:
-  repository: docker-repo.procura.nl/vrijbrp
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
-
+# Default values for vrijbrp-postgres.
 nameOverride: ""
 fullnameOverride: ""
 
+image:
+  repository: docker-repo.procura.nl/vrijbrp/postgres
+  pullPolicy: Always
+  tag: "latest"
+
 imagePullSecrets:
-  - name: "vrijbrp-private-registry"
+  - name: "vrijbrp-postgres-private-registry"
 
 imageCredentials:
   registry: docker-repo.procura.nl
   username: conduction
   password: 5&k6L7AASgA$
 
-security:
-  passwordHash: 'ThisIsTheDefaultHash'
-  license: ''
+## Persist data to a persistent volume
+persistence:
+  enabled: true
+# storageClass: default
+# accessMode: ReadWriteOnce
+  size: 3Gi
 
-settings:
-  gemeentecode: '1902'
-  gemeentenaam: 'Demodam'
-  loglevel: 'INFO'
+service:
+  port: 5432
 
+postgres:
+  user: "postgres"
+  password: "postgres"
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -48,31 +50,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: true
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-
-  hosts:
-    - host: srv-503t.procura.nl
-      paths: []
-  tls: []
-  #  - secretName: srv-503t.procura.nl-tls
-  #    hosts:
-  #      - chart-example.local
-
-postgresql:
-  enabled: true
-  host: 'vrijbrp-postgres-service'
-  username: "postgres"
-  password: "postgres"
-  service:
-    port: 5432
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -1,0 +1,1 @@
+helm uninstall -n vrijbrp vrijbrp-app

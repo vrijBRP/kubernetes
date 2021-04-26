@@ -1,5 +1,4 @@
 # VrijBRP op Kubernetes
-
 VrijBRP is a solution for the 'Basisregistratie Personen' by Procura.
 
 ## Prerequisites
@@ -26,7 +25,6 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 
 | parameter | description | default |
 | --------- | ----------- | ------- |
-| `replicaCount` | The number of replicas that will be started for each container (this should not be changed for the moment) | `1` |
 | `image.repository` | The repository to pull the image from (do not change) | `docker-repo.procura.nl/vrijbrp` |
 | `image.pullPolicy` | When the image should be pulled | `Always` |
 | `image.tag` | The version of the image to pull | `1.26.2` |
