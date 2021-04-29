@@ -56,12 +56,12 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "vrijbrp.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-balie
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{- define "vrijbrp.ws.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-balie-ws
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
@@ -69,12 +69,12 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Selector labels
 */}}
 {{- define "vrijbrp.nginx.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-balie-nginx
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-nginx
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{- define "vrijbrp.ws.nginx.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-balie-ws-nginx
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-nginx
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

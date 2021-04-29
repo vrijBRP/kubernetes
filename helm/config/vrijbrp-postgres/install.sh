@@ -1,1 +1,1 @@
-helm.exe install -n vrijbrp --create-namespace vrijbrp-postgres -f values-demo.yaml ../../vrijbrp-postgres
+helm.exe install -n vrijbrp --create-namespace my-vrijbrp-postgres -f values-demo.yaml ../../vrijbrp-postgres

@@ -1,11 +1,6 @@
 nameOverride: ""
 fullnameOverride: ""
 
-image:
-  repository: docker-repo.procura.nl/vrijbrp
-  pullPolicy: IfNotPresent
-  tag: latest
-
 # imagePullSecrets:
 #   - name: "vrijbrp-private-registry"
 
@@ -13,26 +8,6 @@ image:
 #   registry: docker-repo.procura.nl
 #   username: MY-USERNAME
 #   password: MY-PASSWORD
-
-## Persist data to a persistent volume
-persistence:
-  enabled: true
-  #storageClass: default
-  #accessMode: ReadWriteOnce
-  size: 3Gi
-
-security:
-  passwordHash: 'ThisIsTheDefaultHash'
-  license: ''
-
-settings:
-  gemeentecode: '1902'
-  gemeentenaam: 'Demodam'
-  loglevel: 'INFO'
-
-service:
-  type: ClusterIP
-  port: 80
 
 ingress:
   enabled: true
@@ -47,25 +22,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-postgresql:
-  enabled: true
-  host: 'vrijbrp-postgres-service'
-  username: 'postgres'
-  password: '!ChangeMe!'
-  service:
-    port: 5432
-
-procura:
-  database:
-#   custom-url: null
-#   custom-driver: null
-    db: postgres
-    host: 'vrijbrp-postgres-service'
-    port: 5432
-    sid: rvig_testdb
-    username: 'postgres'
-    password: '!ChangeMe!'
-
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
@@ -75,27 +31,41 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+global:
+  settings:
+    gemeentecode: '1902'
+    gemeentenaam: 'Demodam'
+    loglevel: 'INFO'
 
-podSecurityContext: {}
-  # fsGroup: 2000
+  postgresql:
+    enabled: true
+    host: 'my-vrijbrp-postgres-service'
+    username: 'postgres'
+    password: '!ChangeMe!'
+    service:
+      port: 5432
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+# APPLICATIONS
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+balie:
+  security:
+    passwordHash: 'ThisIsTheDefaultHash'
+    license: ''
+
+  persistence:
+    enabled: true
+    #storageClass: default
+    #accessMode: ReadWriteOnce
+    size: 3Gi
+
+balie-ws:
+  procura:
+    database:
+    # custom-url: null
+    # custom-driver: null
+      db: postgres
+      host: 'my-vrijbrp-postgres-service'
+      port: 5432
+      sid: rvig_testdb
+      username: 'postgres'
+      password: '!ChangeMe!'

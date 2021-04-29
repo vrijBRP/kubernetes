@@ -1,1 +1,1 @@
-helm install -n vrijbrp --create-namespace vrijbrp-app -f ./values-demo.yaml ../../vrijbrp
+helm install -n vrijbrp --create-namespace my-vrijbrp -f ./values-demo.yaml ../../vrijbrp

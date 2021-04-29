@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "vrijbrp.fullname" . }}-balie-ws
+  name: {{ include "vrijbrp.fullname" . }}
   labels:
     {{- include "vrijbrp.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "vrijbrp.ws.selectorLabels" . | nindent 6 }}
+      {{- include "vrijbrp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -15,7 +15,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "vrijbrp.ws.selectorLabels" . | nindent 8 }}
+        {{- include "vrijbrp.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -24,34 +24,40 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-      - name: config
-        secret:
-          secretName: {{ template "fullname" . }}-balie-ws
-      - name: log4j
-        configMap:
-          name: {{ template "fullname" . }}
+        - name: app
+          persistentVolumeClaim:
+            claimName: {{ include "fullname" . }}
+        - name: config
+          secret:
+            secretName: {{ template "fullname" . }}
+        - name: log4j
+          configMap:
+            name: {{ template "fullname" . }}
       containers:
-        - name: {{ include "vrijbrp.fullname" . }}-balie-ws
+        - name: {{ include "vrijbrp.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/balie-ws:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
           readinessProbe:
            initialDelaySeconds: 5
            httpGet:
-             path: /personen-ws/rest/v2/info
+             path: /personen/rest/v2/info
              port: http
           livenessProbe:
            initialDelaySeconds: 30
            httpGet:
-             path: /personen-ws/rest/v2/info
+             path: /personen/rest/v2/info
              port: http
           volumeMounts:
+            - name: app
+              mountPath: /usr/local/tomcat/procura/applicaties/personen
             - name: config
-              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/config/applicatie.properties
+              mountPath: /usr/local/tomcat/procura/applicaties/personen/config/applicatie.properties
               subPath: applicatie.properties
             - name: log4j
               readOnly: true

@@ -1,1 +1,1 @@
-helm uninstall -n vrijbrp vrijbrp-postgres
+helm uninstall -n vrijbrp my-vrijbrp-postgres

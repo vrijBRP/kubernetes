@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "vrijbrp.fullname" . }}-balie-nginx
+  name: {{ include "vrijbrp.fullname" . }}-nginx
   labels:
     {{- include "vrijbrp.labels" . | nindent 4 }}
 spec:
@@ -28,7 +28,7 @@ spec:
           configMap:
             name: {{ template "fullname" . }}-personen-nginx
       containers:
-        - name: {{ include "vrijbrp.fullname" . }}-balie-nginx
+        - name: {{ include "vrijbrp.fullname" . }}-nginx
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "docker.io/nginx:latest"
@@ -49,7 +49,7 @@ spec:
              port: http
           env:
             - name: NGINX_HOST
-              value: {{ include "vrijbrp.fullname" . }}-balie-backend
+              value: {{ include "vrijbrp.fullname" . }}-backend
             - name: NGINX_PORT
               value: "80"
           volumeMounts:
@@ -59,3 +59,43 @@ spec:
               mountPath: /etc/nginx/templates/default.conf.template
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "vrijbrp.fullname" . }}
+  labels:
+    {{- include "vrijbrp.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "vrijbrp.nginx.selectorLabels" . | nindent 4 }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-personen-nginx
+  labels:
+    app.kubernetes.io/name: {{ template "fullname" . }}-personen-nginx
+    app.kubernetes.io/part-of: {{ .Release.Name }}
+    helm.sh/chart: {{ include "chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  default.conf.template: |
+    server {
+      location / {
+         proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/personen/;
+         proxy_set_header    Host   $http_host;
+      }
+    }
+
