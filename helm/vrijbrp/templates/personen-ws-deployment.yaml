@@ -24,14 +24,12 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: database
-          secret:
-            secretName: {{ template "fullname" . }}-balie-ws
-        - name: log4j
-          configMap:
-            name: {{ template "fullname" . }}
-        - name: logs
-          emptyDir: {}
+      - name: config
+        secret:
+          secretName: {{ template "fullname" . }}-balie-ws
+      - name: log4j
+        configMap:
+          name: {{ template "fullname" . }}
       containers:
         - name: {{ include "vrijbrp.fullname" . }}-balie-ws
           securityContext:
@@ -42,7 +40,7 @@ spec:
             - name: http
               containerPort: 8080
           readinessProbe:
-           initialDelaySeconds: 30
+           initialDelaySeconds: 5
            httpGet:
              path: /personen-ws/rest/v2/info
              port: http
@@ -52,15 +50,13 @@ spec:
              path: /personen-ws/rest/v2/info
              port: http
           volumeMounts:
-            - name: database
-              readOnly: true
-              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/config
+            - name: config
+              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/config/applicatie.properties
+              subPath: applicatie.properties
             - name: log4j
               readOnly: true
               mountPath: /usr/local/tomcat/lib/log4j.properties
               subPath: log4j.properties
-            - name: logs
-              mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/logs
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

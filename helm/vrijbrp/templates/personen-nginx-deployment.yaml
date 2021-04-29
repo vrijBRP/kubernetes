@@ -38,7 +38,7 @@ spec:
               containerPort: 80
               protocol: TCP
           readinessProbe:
-           initialDelaySeconds: 30
+           initialDelaySeconds: 5
            httpGet:
              path: /rest/v2/info
              port: http

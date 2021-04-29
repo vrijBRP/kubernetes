@@ -1,18 +1,20 @@
+# Default values for vrijbrp.
 nameOverride: ""
 fullnameOverride: ""
 
 image:
   repository: docker-repo.procura.nl/vrijbrp
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
-# imagePullSecrets:
-#   - name: "vrijbrp-private-registry"
+imagePullSecrets:
+  - name: "vrijbrp-private-registry"
 
-# imageCredentials:
-#   registry: docker-repo.procura.nl
-#   username: MY-USERNAME
-#   password: MY-PASSWORD
+imageCredentials:
+  registry: docker-repo.procura.nl
+  username: conduction
+  password: 5&k6L7AASgA$
 
 ## Persist data to a persistent volume
 persistence:
@@ -40,10 +42,10 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 
   hosts:
-    - host: chart-example.local
+    - host: srv-503t.procura.nl
       paths: []
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: srv-503t.procura.nl-tls
   #    hosts:
   #      - chart-example.local
 

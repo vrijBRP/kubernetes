@@ -39,7 +39,7 @@ spec:
             - name: "POSTGRES_USER"
               value: {{ .Values.postgres.user | quote }}
             - name: "POSTGRES_PASSWORD"
-              value: {{ .Values.postgres.user | quote }}
+              value: {{ .Values.postgres.password | quote }}
           ports:
             - name: http
               containerPort: 5432
@@ -49,4 +49,4 @@ spec:
       volumes:
         - name: {{ include "vrijbrp-postgres.fullname" . }}-data
           persistentVolumeClaim:
-            claimName: {{ include "vrijbrp-postgres.fullname" . }}-pvc
+            claimName: {{ include "vrijbrp-postgres.fullname" . }}-data

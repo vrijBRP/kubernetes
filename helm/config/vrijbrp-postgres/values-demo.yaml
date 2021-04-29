@@ -1,18 +1,19 @@
+# Default values for vrijbrp-postgres.
 nameOverride: ""
 fullnameOverride: ""
 
 image:
   repository: docker-repo.procura.nl/vrijbrp/postgres
-  pullPolicy: IfNotPresent
-  tag: latest
+  pullPolicy: Always
+  tag: "latest"
 
-# imagePullSecrets:
-#   - name: "vrijbrp-private-registry"
+imagePullSecrets:
+  - name: "vrijbrp-postgres-private-registry"
 
-# imageCredentials:
-#   registry: docker-repo.procura.nl
-#   username: MY-USERNAME
-#   password: MY-PASSWORD
+imageCredentials:
+  registry: docker-repo.procura.nl
+  username: conduction
+  password: 5&k6L7AASgA$
 
 ## Persist data to a persistent volume
 persistence:
@@ -22,12 +23,11 @@ persistence:
   size: 3Gi
 
 service:
-  type: ClusterIP
   port: 5432
 
 postgres:
-  user: "postgres"
-  password: "!ChangeMe!"
+  user: 'postgres'
+  password: '!ChangeMe!'
 
 serviceAccount:
   # Specifies whether a service account should be created
