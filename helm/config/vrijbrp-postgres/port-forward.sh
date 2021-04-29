@@ -1,1 +1,0 @@
-kubectl.exe -n vrijbrp port-forward service/vrijbrp-postgres-service 7777:5432
