@@ -54,8 +54,8 @@ balie:
   persistence:
     enabled: true
     #storageClass: default
-    #accessMode: ReadWriteOnce
-    size: 3Gi
+    accessMode: ReadWriteOnce
+    size: 1Gi
 
 balie-ws:
   procura:

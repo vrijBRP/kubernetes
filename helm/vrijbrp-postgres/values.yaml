@@ -19,7 +19,7 @@ persistence:
   enabled: true
 # storageClass: default
 # accessMode: ReadWriteOnce
-  size: 3Gi
+  size: 1Gi
 
 service:
   type: ClusterIP
