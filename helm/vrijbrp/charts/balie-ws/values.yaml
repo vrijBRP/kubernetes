@@ -1,5 +1,5 @@
 image:
-  repository: docker-repo.procura.nl/vrijbrp/balie-ws
+  repository: vrijbrp/balie-ws
   pullPolicy: IfNotPresent
   tag: 1.27.1-SNAPSHOT
 
