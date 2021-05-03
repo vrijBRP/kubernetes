@@ -1,7 +1,7 @@
 image:
   repository: docker-repo.procura.nl/vrijbrp/balie-ws
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: 1.27.1-SNAPSHOT
 
 service:
   type: ClusterIP

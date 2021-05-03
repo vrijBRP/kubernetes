@@ -1,0 +1,80 @@
+# Default values for vrijbrp.
+nameOverride: ""
+fullnameOverride: ""
+
+imagePullSecrets:
+  - name: "vrijbrp-private-registry"
+
+imageCredentials:
+  registry: docker-repo.procura.nl
+  username: conduction
+  password: 5&k6L7AASgA$
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+  hosts:
+    - host: srv-503t.procura.nl
+      paths: []
+  tls: []
+  #  - secretName: srv-503t.procura.nl-tls
+  #    hosts:
+  #      - chart-example.local
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+global:
+  settings:
+    gemeentecode: '1902'
+    gemeentenaam: 'Demodam'
+    loglevel: 'INFO'
+
+  postgresql:
+    enabled: true
+    host: 'my-vrijbrp-postgres-service'
+    username: 'postgres'
+    password: '!ChangeMe!'
+    service:
+      port: 5432
+
+balie:
+  image:
+    repository: docker-repo.procura.nl/vrijbrp/balie
+    pullPolicy: IfNotPresent
+    tag: latest
+
+  security:
+    passwordHash: 'ThisIsTheDefaultHash'
+    license: ''
+
+  persistence:
+    enabled: true
+    #storageClass: default
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+balie-ws:
+  image:
+    repository: docker-repo.procura.nl/vrijbrp/balie-ws
+    pullPolicy: IfNotPresent
+    tag: latest
+
+  procura:
+    database:
+    # custom-url: null
+    # custom-driver: null
+      db: postgres
+      host: 'my-vrijbrp-postgres-service'
+      port: 5432
+      sid: rvig_testdb
+      username: 'postgres'
+      password: '!ChangeMe!'

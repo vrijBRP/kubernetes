@@ -1,11 +1,29 @@
-image:
-  repository: vrijbrp/balie
-  pullPolicy: IfNotPresent
-  tag: 1.27.1-SNAPSHOT
+# Default values for vrijbrp-postgres.
+nameOverride: ""
+fullnameOverride: ""
+
+## Persist data to a persistent volume
+persistence:
+  enabled: true
+# storageClass: default
+# accessMode: ReadWriteOnce
+  size: 1Gi
 
 service:
-  type: ClusterIP
-  port: 80
+  port: 5432
+
+postgres:
+  user: 'postgres'
+  password: '!ChangeMe!'
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
 
 podAnnotations: {}
 

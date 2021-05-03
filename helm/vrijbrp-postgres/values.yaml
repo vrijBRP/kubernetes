@@ -2,9 +2,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 image:
-  repository: docker-repo.procura.nl/vrijbrp/postgres
+  repository: vrijbrp/postgres
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: 11-1.0.0
 
 # imagePullSecrets:
 #   - name: "vrijbrp-private-registry"

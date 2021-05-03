@@ -1,0 +1,1 @@
+helm install -n vrijbrp --create-namespace my-vrijbrp -f ./values-procura-repository.yaml ../../../vrijbrp

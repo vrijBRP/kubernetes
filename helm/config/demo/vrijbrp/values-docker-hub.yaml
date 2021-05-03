@@ -2,14 +2,6 @@
 nameOverride: ""
 fullnameOverride: ""
 
-imagePullSecrets:
-  - name: "vrijbrp-private-registry"
-
-imageCredentials:
-  registry: docker-repo.procura.nl
-  username: conduction
-  password: 5&k6L7AASgA$
-
 ingress:
   enabled: true
   annotations:
@@ -47,6 +39,11 @@ global:
       port: 5432
 
 balie:
+  image:
+    repository: vrijbrp/balie
+    pullPolicy: Always
+    tag: 1.27.1-SNAPSHOT
+
   security:
     passwordHash: 'ThisIsTheDefaultHash'
     license: ''
@@ -58,6 +55,11 @@ balie:
     size: 1Gi
 
 balie-ws:
+  image:
+    repository: vrijbrp/balie-ws
+    pullPolicy: Always
+    tag: 1.27.1-SNAPSHOT
+
   procura:
     database:
     # custom-url: null
