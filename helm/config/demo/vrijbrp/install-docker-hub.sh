@@ -1,1 +1,0 @@
-helm install -n vrijbrp --create-namespace my-vrijbrp -f ./values-docker-hub.yaml ../../../vrijbrp

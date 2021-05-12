@@ -1,1 +1,0 @@
-helm uninstall -n vrijbrp my-vrijbrp
