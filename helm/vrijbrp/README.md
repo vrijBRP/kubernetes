@@ -29,7 +29,7 @@ $ helm delete my-vrijbrp
 The following tables list the configurable parameters of the VrijBRP chart and their default values
 
 | parameter                    | description                                                                                               | default                          |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------- | ------- |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | `nameOverride`               | String to partially override common.names.fullname template with a string (will prepend the release name) | `nil`                            |
 | `fullnameOverride`           | String to fully override common.names.fullname template with a string                                     | `nil`                            |
 | `image.repository`           | The repository to pull the image from (do not change)                                                     | `docker-repo.procura.nl/vrijbrp` |
@@ -56,7 +56,7 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 | `postgresql.username`        | The username of the administration user on the database                                                   | `postgres`                       |
 | `postgresql.password`        | The password of the administration user on the database                                                   | `!ChangeMe!`                     |
 | `postgresql.service.port`    | The port of the postgresql server when `postgresql.enabled` is `false`                                    | `''`                             |
-| `procura.database.db`        | The type of Procura BRP database                                                                          | `postgres                        | oracle` |
+| `procura.database.db`        | The type of Procura BRP database                                                                          | `postgres, oracle`               |
 | `procura.database.host`      | The host of the Procura BRP dababase                                                                      |                                  |
 | `procura.database.port`      | The port of the Procura BRP dababase                                                                      |                                  |
 | `procura.database.sid`       | The sid of the Procura BRP database                                                                       |                                  |
