@@ -16,14 +16,6 @@
 *.tmp
 *.orig
 *~
-
-# Prevent loops
-#/*.tgz
-
-# Intermediate files
-*.sql
-/*.md
-
 # Various IDEs
 .project
 .idea/
