@@ -3,9 +3,9 @@ entries:
   vrijbrp:
   - apiVersion: v2
     appVersion: 1.27.1-SNAPSHOT
-    created: "2021-05-19T17:17:26.4586372+02:00"
+    created: "2021-05-19T17:31:29.6819556+02:00"
     description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
-    digest: dda8bbaeea4016fe8ac893dbbd6c2cce2951caf4154bacaf22101422bd121576
+    digest: 3b91ddb0800dbf869e0a868744cc834c79697a143041f6baef0e99c7e4edcae1
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
     keywords:
@@ -24,7 +24,7 @@ entries:
   vrijbrp-postgres:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-05-19T17:17:26.4586372+02:00"
+    created: "2021-05-19T17:31:29.6829558+02:00"
     description: Demo Postgres Helm chart voor vrijBRP
     digest: 2c02581e6aad9eebde32a1a4b8d977648b00b70e630a2373389dae5b0d74eb47
     home: https://vrijbrp.nl
@@ -42,4 +42,4 @@ entries:
     urls:
     - vrijbrp-postgres-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-19T17:17:26.4196392+02:00"
+generated: "2021-05-19T17:31:29.641953+02:00"
