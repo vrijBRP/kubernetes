@@ -3,8 +3,17 @@ name: vrijbrp
 description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
 home: https://vrijbrp.nl
 icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
+
 sources:
   - https://github.com/vrijBRP
+
+keywords:
+  - brp
+  - common ground
+
+maintainers:
+  - name: Procura
+    email: burgerzaken@procura.nl
 
 type: application
 version: 0.1.0

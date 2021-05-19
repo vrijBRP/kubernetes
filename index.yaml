@@ -3,11 +3,17 @@ entries:
   vrijbrp:
   - apiVersion: v2
     appVersion: 1.27.1-SNAPSHOT
-    created: "2021-05-19T17:02:04.0402727+02:00"
+    created: "2021-05-19T17:17:26.4586372+02:00"
     description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
-    digest: 5ccb41f98a7ef947ea260fa5dc68c3ec9d1394bbfd7feda794a1e7dd2eb9bc83
+    digest: dda8bbaeea4016fe8ac893dbbd6c2cce2951caf4154bacaf22101422bd121576
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
+    keywords:
+    - brp
+    - common ground
+    maintainers:
+    - email: burgerzaken@procura.nl
+      name: Procura
     name: vrijbrp
     sources:
     - https://github.com/vrijBRP
@@ -18,11 +24,17 @@ entries:
   vrijbrp-postgres:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-05-19T17:02:04.0412731+02:00"
+    created: "2021-05-19T17:17:26.4586372+02:00"
     description: Demo Postgres Helm chart voor vrijBRP
-    digest: e298c422e14912d8af915fc48d8882ab77890153e5b983a8bdf0866f790a7551
+    digest: 2c02581e6aad9eebde32a1a4b8d977648b00b70e630a2373389dae5b0d74eb47
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
+    keywords:
+    - brp
+    - common ground
+    maintainers:
+    - email: burgerzaken@procura.nl
+      name: Procura
     name: vrijbrp-postgres
     sources:
     - https://github.com/vrijBRP
@@ -30,4 +42,4 @@ entries:
     urls:
     - vrijbrp-postgres-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-19T17:02:04.0022712+02:00"
+generated: "2021-05-19T17:17:26.4196392+02:00"
