@@ -1,6 +1,10 @@
 apiVersion: v2
 name: vrijbrp-postgres
 description: Demo Postgres Helm chart voor vrijBRP
+home: https://vrijbrp.nl
+icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
+sources:
+  - https://github.com/vrijBRP
 
 type: application
 version: 0.1.0
