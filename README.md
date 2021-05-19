@@ -27,6 +27,8 @@ You can then run `helm search repo vrijbrp` to see the charts.
 
 ## Rebuilding the Helm index (for artifacthub.io)
 
+Do this after each change to the files
+
 ```console
 $ helm package helm/vrijbrp
 $ helm package helm/vrijbrp-postgres
