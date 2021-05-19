@@ -10,7 +10,6 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 Once Helm is set up properly, add the repo as follows:
 
 ```console
-# Add the repository
 helm repo add vrijbrp https://raw.githubusercontent.com/vrijBRP/kubernetes/master
 helm repo update
 ```
@@ -23,7 +22,6 @@ You can then run `helm search repo vrijbrp` to see the charts.
 | ------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | [vrijBRP](https://github.com/vrijBRP/kubernetes/blob/master/helm/vrijbrp/README.md)                                 | Front-desk application      |
 | [vrijBRP Demo Postgres database](https://github.com/vrijBRP/kubernetes/blob/master/helm/vrijbrp-postgres/README.md) | Prefilled postgres database |
-|                                                                                                                     |                             |
 
 ## Rebuilding the Helm index (for artifacthub.io)
 
