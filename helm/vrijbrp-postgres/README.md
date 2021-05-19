@@ -10,9 +10,13 @@ VrijBRP is a solution for the 'Basisregistratie Personen' by Procura.
 
 ## Get Repo Info
 ```console
-helm repo add vrijbrp https://raw.githubusercontent.com/vrijBRP/kubernetes/master
-helm repo update
+$ helm repo add vrijbrp https://raw.githubusercontent.com/vrijBRP/kubernetes/master
+"vrijbrp" has been added to your repositories
+
+$ helm repo update
 ```
+You can then run `helm search repo vrijbrp` to see the charts.
+
 ## Installing the chart
 To install the chart with the release name `my-vrijbrp-postgres`
 
