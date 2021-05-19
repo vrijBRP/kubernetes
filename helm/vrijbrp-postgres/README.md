@@ -8,14 +8,17 @@ VrijBRP is a solution for the 'Basisregistratie Personen' by Procura.
 - Helm 3.2.4
 - PV provisioner support in the underlying infrastructure (required by PostgreSQL)
 
+## Get Repo Info
+```console
+helm repo add vrijbrp https://raw.githubusercontent.com/vrijBRP/kubernetes/master
+helm repo update
+```
 ## Installing the chart
-
 To install the chart with the release name `my-vrijbrp-postgres`
 
 ```console
-$ helm install my-vrijbrp-postgres ./vrijbrp-postgres
+$ helm install my-vrijbrp-postgres vrijbrp/vrijbrp-postgres
 ```
-
 ## Login into User interface
 
 When using this demo database. Use the following initial credentials:
