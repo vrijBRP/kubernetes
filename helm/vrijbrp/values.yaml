@@ -38,12 +38,10 @@ global:
     loglevel: 'INFO'
 
   postgresql:
-    enabled: true
     host: 'my-vrijbrp-postgres-service'
     username: 'postgres'
     password: '!ChangeMe!'
-    service:
-      port: 5432
+    port: 5432
 
 # APPLICATIONS
 

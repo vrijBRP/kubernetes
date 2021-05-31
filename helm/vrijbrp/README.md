@@ -16,6 +16,7 @@ $ helm repo add vrijbrp https://raw.githubusercontent.com/vrijBRP/kubernetes/mas
 
 $ helm repo update
 ```
+
 You can then run `helm search repo vrijbrp` to see the charts.
 
 ## Installing the chart
@@ -55,7 +56,7 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 | `global.postgresql.host`             | The url of the postgresql server when `postgresql.enabled` is `false`                                     | `my-vrijbrp-postgres-service` |
 | `global.postgresql.username`         | The username of the administration user on the database                                                   | `postgres`                    |
 | `global.postgresql.password`         | The password of the administration user on the database                                                   | `!ChangeMe!`                  |
-| `global.postgresql.service.port`     | The port of the postgresql server                                                                         | `5432`                        |
+| `global.postgresql.port`             | The port of the postgresql server                                                                         | `5432`                        |
 | `balie.security.passwordHash`        | The hash to store the passwords in                                                                        | `'ThisIsTheDefaultHash'`      |
 | `balie.security.license`             | The license for VrijBRP                                                                                   | `''`                          |
 | `balie-ws.procura.database.db`       | The type of Procura BRP database                                                                          | `postgres`                    |
