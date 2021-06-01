@@ -1,10 +1,7 @@
 nameOverride: ""
 fullnameOverride: ""
 
-# imagePullSecrets:
-#   - name: "vrijbrp-private-registry"
-
-# imageCredentials:
+# imageRegistry:
 #   registry: docker-repo.procura.nl
 #   username: MY-USERNAME
 #   password: MY-PASSWORD
@@ -16,7 +13,6 @@ ingress:
 
   hosts:
     - host: chart-example.local
-      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -32,6 +28,12 @@ serviceAccount:
   name: ""
 
 global:
+# imagePullSecrets:
+#   - name: "vrijbrp-private-registry"
+
+  image:
+    pullPolicy: Always
+
   settings:
     gemeentecode: '1902'
     gemeentenaam: 'Demodam'

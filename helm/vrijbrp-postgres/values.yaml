@@ -9,7 +9,7 @@ image:
 # imagePullSecrets:
 #   - name: "vrijbrp-private-registry"
 
-# imageCredentials:
+# imageRegistry:
 #   registry: docker-repo.procura.nl
 #   username: MY-USERNAME
 #   password: MY-PASSWORD

@@ -44,9 +44,9 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 | `nameOverride`                       | String to partially override common.names.fullname template with a string (will prepend the release name) | `nil`                         |
 | `fullnameOverride`                   | String to fully override common.names.fullname template with a string                                     | `nil`                         |
 | `imagePullSecrets`                   | The secret needed to pull the image                                                                       | `nil`                         |
-| `imageCredentials.registry`          | The registry from which the image is pulled                                                               | `nil`                         |
-| `imageCredentials.username`          | The username to the registry                                                                              | `nil`                         |
-| `imageCredentials.password`          | The password to the registry                                                                              | `nil`                         |
+| `imageRegistry.registry`             | The registry from which the image is pulled                                                               | `nil`                         |
+| `imageRegistry.username`             | The username to the registry                                                                              | `nil`                         |
+| `imageRegistry.password`             | The password to the registry                                                                              | `nil`                         |
 | `ingress.enabled`                    | Whether or not the application should be available through Ingress                                        | `true`                        |
 | `ingress.hosts[0].host`              | The hostname the application should be available on                                                       | `chart-example.local`         |
 | `ingress.tls`                        | Ingress TLS parameters                                                                                    | `[]`                          |

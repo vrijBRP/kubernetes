@@ -6,7 +6,7 @@ metadata:
     {{- include "vrijbrp.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": pre-install
-    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-weight": "2"
     "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   manualSelector: true
@@ -18,14 +18,14 @@ spec:
       labels:
         {{- include "vrijbrp.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.global.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
       - name: postgres-init-job
         image: docker-repo.procura.nl/vrijbrp/postgres-init:1.0.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: {{ .Values.global.image.pullPolicy }}
         env:
           - name: "PGHOST"
             value: {{ .Values.global.postgresql.host | quote }}
