@@ -6,6 +6,7 @@ VrijBRP is a solution for the 'Basisregistratie Personen' by Procura.
 
 - Kubernetes 1.17+
 - Helm 3.2.4
+- PostgreSQL 11+
 - PV provisioner support in the underlying infrastructure (required by PostgreSQL)
 
 ## Get Repo Info

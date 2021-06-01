@@ -23,7 +23,6 @@ You can then run `helm search repo vrijbrp` to see the charts.
 | Chart                                                                                                               | Description                 |
 | ------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | [vrijBRP](https://github.com/vrijBRP/kubernetes/blob/master/helm/vrijbrp/README.md)                                 | Front-desk application      |
-| [vrijBRP Demo Postgres database](https://github.com/vrijBRP/kubernetes/blob/master/helm/vrijbrp-postgres/README.md) | Prefilled postgres database |
 
 ## Rebuilding the Helm index (for artifacthub.io)
 
@@ -31,7 +30,6 @@ Do this after each change to the files
 
 ```console
 $ helm package helm/vrijbrp
-$ helm package helm/vrijbrp-postgres
 $ helm repo index .
 ```
 
