@@ -28,6 +28,14 @@ To install the chart with the release name `my-vrijbrp`
 $ helm install my-vrijbrp vrijbrp/vrijbrp
 ```
 
+## Login into User interface
+
+When using this demo database. Use the following initial credentials:
+
+```properties
+Username: beheerder
+Password: W@chtw00rd
+```
 ## Uninstalling the chart
 
 To uninstall/delete the `my-vrijbrp` deployment
