@@ -65,6 +65,11 @@ app.kubernetes.io/name: {{ include "vrijbrp.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
+{{- define "vrijbrp.hcbrp.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
 {{/*
 Selector labels
 */}}
@@ -77,6 +82,12 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-nginx
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{- define "vrijbrp.hcbrp.nginx.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "vrijbrp.name" . }}-nginx
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
 
 {{/*
 Create the name of the service account to use

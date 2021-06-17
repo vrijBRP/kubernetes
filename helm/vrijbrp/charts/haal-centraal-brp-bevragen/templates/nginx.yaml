@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      {{- include "vrijbrp.ws.nginx.selectorLabels" . | nindent 6 }}
+      {{- include "vrijbrp.hcbrp.nginx.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -15,7 +15,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "vrijbrp.ws.nginx.selectorLabels" . | nindent 8 }}
+        {{- include "vrijbrp.hcbrp.nginx.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -26,7 +26,7 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: {{ template "fullname" . }}-personen-ws-nginx
+            name: {{ template "fullname" . }}-hcbrp-nginx
       containers:
         - name: {{ include "vrijbrp.fullname" . }}-nginx
           securityContext:
@@ -37,16 +37,6 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          readinessProbe:
-           initialDelaySeconds: 5
-           httpGet:
-             path: /personen-ws/rest/v2/info
-             port: http
-          livenessProbe:
-           initialDelaySeconds: 30
-           httpGet:
-             path: /personen-ws/rest/v2/info
-             port: http
           env:
             - name: NGINX_HOST
               value: {{ include "vrijbrp.fullname" . }}-backend
@@ -76,16 +66,16 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "vrijbrp.ws.nginx.selectorLabels" . | nindent 4 }}
+    {{- include "vrijbrp.hcbrp.nginx.selectorLabels" . | nindent 4 }}
 
 ---
 
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "fullname" . }}-personen-ws-nginx
+  name: {{ template "fullname" . }}-hcbrp-nginx
   labels:
-    app.kubernetes.io/name: {{ template "fullname" . }}-personen-ws-nginx
+    app.kubernetes.io/name: {{ template "fullname" . }}-hcbrp-nginx
     app.kubernetes.io/part-of: {{ .Release.Name }}
     helm.sh/chart: {{ include "chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
@@ -93,9 +83,9 @@ metadata:
 data:
   default.conf.template: |
     server {
-      location /personen-ws {
-         proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/personen-ws;
-         proxy_set_header    Host   $http_host;
+      location /haal-centraal-brp-bevragen {
+        proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/haal-centraal-brp-bevragen;
+        proxy_set_header    Host   $http_host;
       }
     }
 

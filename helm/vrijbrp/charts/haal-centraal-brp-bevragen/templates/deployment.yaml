@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vrijbrp.fullname" . }}
+  labels:
+    {{- include "vrijbrp.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "vrijbrp.hcbrp.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "vrijbrp.hcbrp.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+      - name: config
+        secret:
+          secretName: {{ template "fullname" . }}
+      containers:
+        - name: {{ include "vrijbrp.fullname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /config/application.properties
+              subPath: application.properties
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -30,13 +30,17 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          - path: /personen(/|$)(.*)
+          - path: /personen
             backend:
               serviceName: {{ $fullName }}-balie
               servicePort: 80
-          - path: /personen-ws(/|$)(.*)
+          - path: /personen-ws
             backend:
               serviceName: {{ $fullName }}-balie-ws
+              servicePort: 80
+          - path: /haal-centraal-brp-bevragen
+            backend:
+              serviceName: {{ $fullName }}-hcbrp
               servicePort: 80
     {{- end }}
   {{- end }}

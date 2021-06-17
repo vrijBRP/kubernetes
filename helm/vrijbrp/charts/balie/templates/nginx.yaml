@@ -40,12 +40,12 @@ spec:
           readinessProbe:
            initialDelaySeconds: 5
            httpGet:
-             path: /rest/v2/info
+             path: /personen/rest/v2/info
              port: http
           livenessProbe:
            initialDelaySeconds: 30
            httpGet:
-             path: /rest/v2/info
+             path: /personen/rest/v2/info
              port: http
           env:
             - name: NGINX_HOST
@@ -93,8 +93,8 @@ metadata:
 data:
   default.conf.template: |
     server {
-      location / {
-         proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/personen/;
+      location /personen {
+         proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/personen;
          proxy_set_header    Host   $http_host;
       }
     }

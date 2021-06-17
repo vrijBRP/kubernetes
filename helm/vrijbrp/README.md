@@ -1,6 +1,6 @@
-# VrijBRP for Kubernetes
+# VrijBRP Haal centraal BRP bevragen API
 
-VrijBRP is a solution for the 'Basisregistratie Personen' by Procura.
+
 
 ## Prerequisites
 
@@ -32,10 +32,19 @@ $ helm install my-vrijbrp vrijbrp/vrijbrp
 
 When using this demo database. Use the following initial credentials:
 
+
 ```properties
+
+# URL: http(s)://<host>/personen
+
 Username: beheerder
 Password: W@chtw00rd
 ```
+
+## Haal centraal API
+
+See [documentation](doc/haal-centraal-brp-bevragen.md)
+
 ## Uninstalling the chart
 
 To uninstall/delete the `my-vrijbrp` deployment
