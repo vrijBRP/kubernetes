@@ -43,7 +43,9 @@ Password: W@chtw00rd
 
 ## Haal centraal API
 
-See [documentation](doc/haal-centraal-brp-bevragen.md)
+See documentation on github
+
+https://github.com/vrijBRP/kubernetes/tree/master/helm/vrijbrp/doc
 
 ## Uninstalling the chart
 
