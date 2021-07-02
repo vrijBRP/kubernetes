@@ -3,9 +3,9 @@ entries:
   vrijbrp:
   - apiVersion: v2
     appVersion: 1.27.1-SNAPSHOT
-    created: "2021-06-17T15:51:56.9345229+02:00"
+    created: "2021-07-02T17:00:36.826301+02:00"
     description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
-    digest: 866cd2234aeb3cff3ad17cec05a7917d6cb01d2ef69494228f3375b80999b9f6
+    digest: ddceca6adca0d9d39781608664e695eb4ca8680803356b4e41d9719f36eb1a95
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
     keywords:
@@ -21,4 +21,4 @@ entries:
     urls:
     - vrijbrp-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-17T15:51:56.8956344+02:00"
+generated: "2021-07-02T17:00:36.7862982+02:00"
