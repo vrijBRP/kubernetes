@@ -35,8 +35,10 @@ spec:
           image: "{{ .Values.postgresql.init.image.repository }}:{{ .Values.postgresql.init.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: "PREFIX_DB"
+              value: {{ .Values.global.postgresql.prefix }}
             - name: "BRP_DB"
-              value: "personen_ws,rvig_testdb"
+              value: "personen_ws,rvig_testdb"  
           envFrom:
             - secretRef:
                 name: {{ .Release.Name }}-postgres-env

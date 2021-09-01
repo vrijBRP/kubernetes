@@ -28,29 +28,30 @@ serviceAccount:
   name: ""
 
 global:
-# imagePullSecrets:
-#   - name: "vrijbrp-private-registry"
+  # imagePullSecrets:
+  #   - name: "vrijbrp-private-registry"
 
   image:
     pullPolicy: Always
 
   settings:
-    gemeentecode: '1902'
-    gemeentenaam: 'Demodam'
-    loglevel: 'INFO'
+    gemeentecode: "1902"
+    gemeentenaam: "Demodam"
+    loglevel: "INFO"
 
   postgresql:
-    host: 'my-vrijbrp-postgres-service'
-    username: 'postgres'
-    password: '!ChangeMe!'
+    host: "my-vrijbrp-postgres-service"
+    username: "postgres"
+    password: "!ChangeMe!"
     port: 5432
+    prefix: test_0000 # environment + customerID
 
 # APPLICATIONS
 
 balie:
   security:
-    passwordHash: 'ThisIsTheDefaultHash'
-    license: ''
+    passwordHash: "ThisIsTheDefaultHash"
+    license: ""
 
   persistence:
     enabled: true
@@ -61,11 +62,11 @@ balie:
 balie-ws:
   procura:
     database:
-    # custom-url: null
-    # custom-driver: null
+      # custom-url: null
+      # custom-driver: null
       db: postgres
-      host: 'my-vrijbrp-postgres-service'
+      host: "my-vrijbrp-postgres-service"
       port: 5432
       sid: rvig_testdb
-      username: 'postgres'
-      password: '!ChangeMe!'
+      username: "postgres"
+      password: "!ChangeMe!"
