@@ -1,7 +1,5 @@
 # VrijBRP Haal centraal BRP bevragen API
 
-
-
 ## Prerequisites
 
 - Kubernetes 1.17+
@@ -31,7 +29,6 @@ $ helm install my-vrijbrp vrijbrp/vrijbrp
 ## Login into User interface
 
 When using this demo database. Use the following initial credentials:
-
 
 ```properties
 
@@ -74,6 +71,7 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 | `global.postgresql.username`         | The username of the administration user on the database                                                   | `postgres`                    |
 | `global.postgresql.password`         | The password of the administration user on the database                                                   | `!ChangeMe!`                  |
 | `global.postgresql.port`             | The port of the postgresql server                                                                         | `5432`                        |
+| `global.postgresql.prefix`           | The prefix for the postgres databases (new since 0.1.1)                                                   | `test_0000`                   |
 | `balie.security.passwordHash`        | The hash to store the passwords in                                                                        | `'ThisIsTheDefaultHash'`      |
 | `balie.security.license`             | The license for VrijBRP                                                                                   | `''`                          |
 | `balie-ws.procura.database.db`       | The type of Procura BRP database                                                                          | `postgres`                    |
