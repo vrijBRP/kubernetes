@@ -3,5 +3,5 @@ name: balie-ws
 description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
 
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 1.27.0
