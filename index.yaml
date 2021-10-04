@@ -3,8 +3,30 @@ entries:
   vrijbrp:
   - apiVersion: v2
     appVersion: 1.27.1-SNAPSHOT
-    created: "2021-09-20T14:59:30.6415369+02:00"
-    description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
+    created: "2021-10-04T16:20:18.967676719+02:00"
+    description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens
+      kunnen bijhouden
+    digest: 4f73c5ad0e82e23e1505c021052315e80445a772443908122102b5f471966c46
+    home: https://vrijbrp.nl
+    icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
+    keywords:
+    - brp
+    - common ground
+    maintainers:
+    - email: burgerzaken@procura.nl
+      name: Procura
+    name: vrijbrp
+    sources:
+    - https://github.com/vrijBRP
+    type: application
+    urls:
+    - vrijbrp-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.27.1-SNAPSHOT
+    created: "2021-10-04T16:20:18.963677568+02:00"
+    description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens
+      kunnen bijhouden
     digest: 47b5e63e99331f32355cadba80b16ba1c8c7ec5a76da37693b0b4b9a01260be5
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
@@ -23,8 +45,9 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.27.1-SNAPSHOT
-    created: "2021-09-20T14:59:30.6395371+02:00"
-    description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens kunnen bijhouden
+    created: "2021-10-04T16:20:18.95961642+02:00"
+    description: Een open platform waarmee Nederlandse gemeenten de persoonsgegevens
+      kunnen bijhouden
     digest: ddceca6adca0d9d39781608664e695eb4ca8680803356b4e41d9719f36eb1a95
     home: https://vrijbrp.nl
     icon: https://raw.githubusercontent.com/vrijBRP/kubernetes/master/assets/vrijBRP_logo.png
@@ -41,4 +64,4 @@ entries:
     urls:
     - vrijbrp-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-20T14:59:30.5865159+02:00"
+generated: "2021-10-04T16:20:18.954330635+02:00"
