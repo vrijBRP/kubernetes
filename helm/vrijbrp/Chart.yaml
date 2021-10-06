@@ -16,5 +16,5 @@ maintainers:
     email: burgerzaken@procura.nl
 
 type: application
-version: 0.1.2
+version: 0.1.3
 appVersion: 1.27.1-SNAPSHOT

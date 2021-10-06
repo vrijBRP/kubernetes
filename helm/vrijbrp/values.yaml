@@ -62,11 +62,12 @@ balie:
 balie-ws:
   procura:
     database:
-      # custom-url: null
-      # custom-driver: null
       db: postgres
       host: "my-vrijbrp-postgres-service"
       port: 5432
       sid: 0000_test_rvig_testdb
       username: "postgres"
       password: "!ChangeMe!"
+      # tns_admin_dir
+      # custom_url: null
+      # custom_driver: null
