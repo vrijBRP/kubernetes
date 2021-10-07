@@ -27,6 +27,9 @@ spec:
       - name: config
         secret:
           secretName: {{ template "fullname" . }}
+      - name: oracle-config
+        secret:
+          secretName: {{ template "fullname" . }}
       - name: log4j
         configMap:
           name: {{ template "fullname" . }}
@@ -38,7 +41,7 @@ spec:
             - name: "PREFIX_DB"
               value: {{ .Values.global.postgresql.prefix }}
             - name: "BRP_DB"
-              value: "personen_ws,rvig_testdb"  
+              value: "personen_ws,rvig_testdb"
           envFrom:
             - secretRef:
                 name: {{ .Release.Name }}-postgres-env
@@ -65,6 +68,9 @@ spec:
             - name: config
               mountPath: /usr/local/tomcat/procura/applicaties/personen-ws/config/applicatie.properties
               subPath: applicatie.properties
+            - name: oracle-config
+              mountPath: /oracle/config/tnsnames.ora
+              subPath: tnsnames.ora
             - name: log4j
               readOnly: true
               mountPath: /usr/local/tomcat/lib/log4j.properties
