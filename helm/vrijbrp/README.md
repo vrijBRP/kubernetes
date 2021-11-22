@@ -72,13 +72,13 @@ The following tables list the configurable parameters of the VrijBRP chart and t
 | `global.postgresql.password`              | The password of the administration user on the database                                                   | `!ChangeMe!`                  |
 | `global.postgresql.port`                  | The port of the postgresql server                                                                         | `5432`                        |
 | `global.postgresql.prefix`                | The prefix for the postgres databases (new since 0.1.1)                                                   | `0000_test`                   |
-| `global.hub.enabled`                      | Enable the Hub/SSO feature                                                                                | `false`                       |
-| `global.hub.default_login`                | Autoredirect to Hub for login                                                                             | `false`                       |
-| `global.hub.check_auth_header`            | Check basic authentication header with the Hub                                                            | `false`                       |
-| `global.hub.url`                          | The external redirect URL used by the browser                                                             | `'https://'`                  |
-| `global.hub.api_url`                      | The internal URL to the Hub API                                                                           | `'http://'`                   |
-| `global.hub.client_id`                    | Hub's client-id                                                                                           | `''`                          |
-| `global.hub.client_secret`                | Hub's client-secret                                                                                       | `''`                          |
+| `global.hub.enabled`                      | Enable the Hub/SSO feature (new since 0.1.5)                                                              | `false`                       |
+| `global.hub.default_login`                | Autoredirect to Hub for login (new since 0.1.5)                                                           | `false`                       |
+| `global.hub.check_auth_header`            | Check basic authentication header with the Hub (new since 0.1.5)                                          | `false`                       |
+| `global.hub.url`                          | The external redirect URL used by the browser (new since 0.1.5)                                           | `'https://'`                  |
+| `global.hub.api_url`                      | The internal URL to the Hub API (new since 0.1.5)                                                         | `'http://'`                   |
+| `global.hub.client_id`                    | Hub's client-id (new since 0.1.5)                                                                         | `''`                          |
+| `global.hub.client_secret`                | Hub's client-secret  (new since 0.1.5)                                                                    | `''`                          |
 | `balie.security.passwordHash`             | The hash to store the passwords in                                                                        | `'ThisIsTheDefaultHash'`      |
 | `balie.security.license`                  | The license for VrijBRP                                                                                   | `''`                          |
 | `balie-ws.procura.database.db`            | The type of Procura BRP database                                                                          | `postgres`                    |
