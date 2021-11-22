@@ -51,6 +51,21 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "HUB_ENABLED"
+              value: "{{ .Values.global.hub.enabled }}"
+            - name: "HUB_DEFAULT_LOGIN"
+              value: "{{ .Values.global.hub.default_login }}"
+            - name: "HUB_CHECK_AUTH_HEADER"
+              value: "{{ .Values.global.hub.check_auth_header }}"
+            - name: "HUB_URL"
+              value: "{{ .Values.global.hub.url }}"
+            - name: "HUB_API_URL"
+              value: "{{ .Values.global.hub.api_url }}"
+            - name: "HUB_CLIENT_ID"
+              value: "{{ .Values.global.hub.client_id }}"
+            - name: "HUB_CLIENT_SECRET"
+              value: "{{ .Values.global.hub.client_secret }}"
           ports:
             - name: http
               containerPort: 8080
