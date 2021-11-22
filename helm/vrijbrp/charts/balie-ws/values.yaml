@@ -1,6 +1,6 @@
 image:
   repository: vrijbrp/balie-ws
-  tag: 1.27.1-SNAPSHOT
+  tag: develop
   pullPolicy: Always
 
 postgresql:

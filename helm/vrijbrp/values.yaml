@@ -46,6 +46,15 @@ global:
     port: 5432
     prefix: 0000_test # environment + customerID
 
+  hub:
+    enabled: "false"
+    default_login: "false"
+    check_auth_header: "false"
+    url: ""
+    api_url: ""
+    client_id: ""
+    client_secret: ""
+
 # APPLICATIONS
 
 balie:

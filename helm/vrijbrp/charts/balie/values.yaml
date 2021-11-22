@@ -1,7 +1,7 @@
 image:
   repository: vrijbrp/balie
   pullPolicy: Always
-  tag: 1.27.1-SNAPSHOT
+  tag: develop
 
 postgresql:
   init:
