@@ -85,7 +85,8 @@ data:
     server {
       location /haal-centraal-brp-bevragen {
         proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/haal-centraal-brp-bevragen;
-        proxy_set_header    Host   $http_host;
+        proxy_set_header       Host   $http_host;
+        client_max_body_size   100M;
       }
     }
 

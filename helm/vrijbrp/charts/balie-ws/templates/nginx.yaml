@@ -95,7 +95,8 @@ data:
     server {
       location /personen-ws {
          proxy_pass http://${NGINX_HOST}:${NGINX_PORT}/personen-ws;
-         proxy_set_header    Host   $http_host;
+         proxy_set_header       Host   $http_host;
+         client_max_body_size   100M;
       }
     }
 
